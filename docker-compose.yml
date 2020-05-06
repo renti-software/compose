@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    networks:
+      - all
+  backend:
+    image: registry.gitlab.com/tqs-project/backend
+    ports:
+      - "8080:8000"
+    depends_on:
+      - postgres
+  react:
+    image: registry.gitlab.com/tqs-project/frontend-web
+    ports:
+      - "80:3000"
+    depends_on:
+      - backend

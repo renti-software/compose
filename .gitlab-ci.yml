@@ -62,6 +62,6 @@ deploy_staging:
     - scp docker-compose.yml $USER@$HOST:/home/$USER/compose/
     # docker login sometimes fails. Run: sudo apt install gnupg2 pass. only necessary 1st time.
     # - ssh mylife@$HOST "docker login registry.gitlab.com -u $GITLAB_USER_NAME -p $GITLAB_USER_PASSWORD && exit"
-    - ssh $USER@$HOST "touch a && cd /home/tqs/compose/ && echo 'I AM IN' && docker-compose pull && docker-compose up -d && exit"
+    - ssh $USER@$HOST "id && cd /home/tqs/compose/ && echo 'I AM IN' && docker-compose pull && docker-compose up -d && exit"
   only:
     - master
